@@ -1,1 +1,269 @@
+/* ==============================
+   PlantOps IT Dashboard
+   Base Styles
+============================== */
 
+:root {
+    --bg: #111827;
+    --sidebar: #0b1120;
+    --panel: #1b2433;
+    --panel-hover: #222f40;
+    --border: #2c394b;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #14b8a6;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==============================
+   Application Layout
+============================== */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==============================
+   Sidebar
+============================== */
+
+.sidebar {
+    width: 240px;
+    background: var(--sidebar);
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+}
+
+.logo {
+    margin-bottom: 40px;
+}
+
+.logo h2 {
+    color: var(--accent);
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.logo span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a {
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: var(--muted);
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: var(--panel);
+    color: var(--accent);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* ==============================
+   Main Content
+============================== */
+
+.main-content {
+    flex: 1;
+    padding: 32px;
+    overflow-x: hidden;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 20px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: var(--muted);
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--green);
+    font-size: 14px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+    border-radius: 50%;
+}
+
+/* ==============================
+   Dashboard Sections
+============================== */
+
+.dashboard-section {
+    margin-bottom: 35px;
+}
+
+.dashboard-section h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+/* ==============================
+   Summary Cards
+============================== */
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.summary-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 12px;
+}
+
+.summary-card h3 {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.summary-card p {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* ==============================
+   Content Panels
+============================== */
+
+.section-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    color: var(--muted);
+}
+
+/* ==============================
+   Footer
+============================== */
+
+footer {
+    margin-top: 50px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* ==============================
+   Responsive Layout
+============================== */
+
+@media (max-width: 1000px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar nav a {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .sidebar-footer {
+        margin-top: 20px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 450px) {
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
