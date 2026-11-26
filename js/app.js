@@ -48,5 +48,39 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    inventoryContainer.innerHTML = assetTable;
+        inventoryContainer.innerHTML = assetTable;
+
+    // Network overview
+    const networkContainer = document.getElementById("network-overview");
+
+    const networkTable = `
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>VLAN ID</th>
+                        <th>Network Name</th>
+                        <th>Subnet</th>
+                        <th>Gateway</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${infrastructureData.networks.map(network => `
+                        <tr>
+                            <td>${network.vlan}</td>
+                            <td>${network.name}</td>
+                            <td>${network.subnet}</td>
+                            <td>${network.gateway}</td>
+                            <td>${network.purpose}</td>
+                            <td>${network.status}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    networkContainer.innerHTML = networkTable;
 });
