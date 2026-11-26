@@ -82,5 +82,39 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    networkContainer.innerHTML = networkTable;
+        networkContainer.innerHTML = networkTable;
+
+    // Backup and recovery overview
+    const backupContainer = document.getElementById("backup-overview");
+
+    const backupTable = `
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Backup Type</th>
+                        <th>Last Backup</th>
+                        <th>Frequency</th>
+                        <th>Restore Test</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${infrastructureData.backups.map(backup => `
+                        <tr>
+                            <td>${backup.system}</td>
+                            <td>${backup.type}</td>
+                            <td>${backup.lastBackup}</td>
+                            <td>${backup.frequency}</td>
+                            <td>${backup.restoreTest}</td>
+                            <td>${backup.status}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    backupContainer.innerHTML = backupTable;
 });
