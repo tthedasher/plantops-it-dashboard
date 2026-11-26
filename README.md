@@ -4,7 +4,7 @@
 
 The dashboard was developed to demonstrate how IT personnel can organize infrastructure information, monitor system statuses, identify operational issues, and maintain visibility into critical systems. By providing searchable asset inventory, network information, backup records, and incident tracking, the application demonstrates how centralized IT documentation can support troubleshooting, maintenance, and operational reliability.
 
-**Website is hosted via GitHub Pages.**
+**Website is hosted via GitHub Pages at `https://tthedasher.github.io/plantops-it-dashboard/`.**
 
 ---
 Copyright © 2026 Anthony "tthedasher" Groves
