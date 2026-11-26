@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) ? "Healthy" : "Warning";
 
     document.getElementById("total-assets").textContent = totalAssets;
-    document.getElementById("systems-online").textContent = systemsOnline;
+    document.getElementById("systems-online").textContent = `${systemsOnline} / ${totalAssets}`;
     document.getElementById("active-issues").textContent = activeIssues;
     document.getElementById("backup-status").textContent = backupStatus;
 
