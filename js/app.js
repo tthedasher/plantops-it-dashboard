@@ -22,40 +22,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Infrastructure inventory
     const inventoryContainer = document.getElementById("asset-inventory");
+    const searchInput = document.getElementById("inventory-search");
 
-    const assetTable = `
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Asset ID</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Department</th>
-                        <th>IP Address</th>
-                        <th>Operating System</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${infrastructureData.assets.map(asset => `
+    const renderInventory = (searchTerm = "") => {
+        const filteredAssets = infrastructureData.assets.filter(asset => {
+            const searchableText = [
+                asset.id,
+                asset.name,
+                asset.type,
+                asset.department,
+                asset.ip,
+                asset.os,
+                asset.status
+            ].join(" ").toLowerCase();
+
+            return searchableText.includes(searchTerm.toLowerCase());
+        });
+
+        const assetTable = `
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td>${asset.id}</td>
-                            <td>${asset.name}</td>
-                            <td>${asset.type}</td>
-                            <td>${asset.department}</td>
-                            <td>${asset.ip}</td>
-                            <td>${asset.os}</td>
-                            <td>${createBadge(asset.status)}</td>
+                            <th>Asset ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Department</th>
+                            <th>IP Address</th>
+                            <th>Operating System</th>
+                            <th>Status</th>
                         </tr>
-                    `).join("")}
-                </tbody>
-            </table>
-        </div>
-    `;
+                    </thead>
+                    <tbody>
+                        ${filteredAssets.map(asset => `
+                            <tr>
+                                <td>${asset.id}</td>
+                                <td>${asset.name}</td>
+                                <td>${asset.type}</td>
+                                <td>${asset.department}</td>
+                                <td>${asset.ip}</td>
+                                <td>${asset.os}</td>
+                                <td>${createBadge(asset.status)}</td>
+                            </tr>
+                        `).join("")}
+                    </tbody>
+                </table>
+                ${filteredAssets.length === 0 ? "<p>No matching assets found.</p>" : ""}
+            </div>
+        `;
 
         inventoryContainer.innerHTML = assetTable;
+    };
 
+    renderInventory();
+
+    searchInput.addEventListener("input", () => {
+        renderInventory(searchInput.value.trim());
+    });
+    
     // Network overview
     const networkContainer = document.getElementById("network-overview");
 
@@ -88,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-        networkContainer.innerHTML = networkTable;
+    networkContainer.innerHTML = networkTable;
 
     // Backup and recovery overview
     const backupContainer = document.getElementById("backup-overview");
@@ -122,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-        backupContainer.innerHTML = backupTable;
+    backupContainer.innerHTML = backupTable;
 
     // IT Operations
     const operationsContainer = document.getElementById("operations-overview");
