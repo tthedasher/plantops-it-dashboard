@@ -377,3 +377,34 @@ tbody tr:last-child td {
 .inventory-controls input::placeholder {
     color: var(--muted);
 }
+
+.inventory-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.inventory-controls input,
+.inventory-controls select {
+    padding: 12px 15px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.inventory-controls select {
+    cursor: pointer;
+}
+
+.inventory-controls input:focus,
+.inventory-controls select:focus {
+    border-color: var(--accent);
+}
+
+.inventory-controls select option {
+    background: var(--panel);
+    color: var(--text);
+}
