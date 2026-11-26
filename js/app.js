@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const searchTerm = searchInput.value.trim().toLowerCase();
         const selectedType = filterInput.value;
 
+        const inventoryCount = document.getElementById("inventory-count");
         const filteredAssets = infrastructureData.assets.filter(asset => {
             const searchableText = [
                 asset.id,
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         inventoryContainer.innerHTML = assetTable;
+        inventoryCount.textContent = `Showing ${filteredAssets.length} of ${infrastructureData.assets.length} assets`;
     };
 
     renderInventory();
