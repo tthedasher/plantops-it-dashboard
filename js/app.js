@@ -23,8 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Infrastructure inventory
     const inventoryContainer = document.getElementById("asset-inventory");
     const searchInput = document.getElementById("inventory-search");
+    const filterInput = document.getElementById("inventory-filter");
 
-    const renderInventory = (searchTerm = "") => {
+    const renderInventory = () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const selectedType = filterInput.value;
+
         const filteredAssets = infrastructureData.assets.filter(asset => {
             const searchableText = [
                 asset.id,
@@ -36,7 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 asset.status
             ].join(" ").toLowerCase();
 
-            return searchableText.includes(searchTerm.toLowerCase());
+            const matchesSearch = searchableText.includes(searchTerm);
+            const matchesType = selectedType === "all" || asset.type === selectedType;
+
+            return matchesSearch && matchesType;
         });
 
         const assetTable = `
@@ -76,9 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderInventory();
 
-    searchInput.addEventListener("input", () => {
-        renderInventory(searchInput.value.trim());
-    });
+    searchInput.addEventListener("input", renderInventory);
+    filterInput.addEventListener("change", renderInventory);
     
     // Network overview
     const networkContainer = document.getElementById("network-overview");
