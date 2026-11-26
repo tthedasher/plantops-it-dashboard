@@ -116,5 +116,39 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    backupContainer.innerHTML = backupTable;
+        backupContainer.innerHTML = backupTable;
+
+    // IT Operations
+    const operationsContainer = document.getElementById("operations-overview");
+
+    const operationsTable = `
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Incident ID</th>
+                        <th>Issue</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${infrastructureData.issues.map(issue => `
+                        <tr>
+                            <td>${issue.id}</td>
+                            <td>${issue.title}</td>
+                            <td>${issue.category}</td>
+                            <td>${issue.priority}</td>
+                            <td>${issue.status}</td>
+                            <td>${issue.department}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    operationsContainer.innerHTML = operationsTable;
 });
