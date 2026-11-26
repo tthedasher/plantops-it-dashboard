@@ -11,10 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeIssues = infrastructureData.issues.filter(issue =>
         issue.status === "Open" || issue.status === "Investigating"
     ).length;
-    const backupStatus = infrastructureData.backups.every(backup =>
-        backup.status === "Successful"
-    ) ? "Healthy" : "Warning";
+    const successfulBackups = infrastructureData.backups.filter(
+        backup => backup.status === "Successful"
+    ).length;
 
+    const backupStatus = `${successfulBackups} / ${infrastructureData.backups.length} Successful`;
     document.getElementById("total-assets").textContent = totalAssets;
     document.getElementById("systems-online").textContent = `${systemsOnline} / ${totalAssets}`;
     document.getElementById("active-issues").textContent = activeIssues;
