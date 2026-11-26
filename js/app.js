@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Generate color-coded status badges
+    const createBadge = (value) => {
+        const className = value.toLowerCase().replace(/\s+/g, "-");
+        return `<span class="status-badge status-${className}">${value}</span>`;
+    };
+    
     // Dashboard summary calculations
     const totalAssets = infrastructureData.assets.length;
     const systemsOnline = infrastructureData.assets.filter(asset => asset.status === "Online").length;
@@ -40,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${asset.department}</td>
                             <td>${asset.ip}</td>
                             <td>${asset.os}</td>
-                            <td>${asset.status}</td>
+                            <td>${createBadge(asset.status)}</td>
                         </tr>
                     `).join("")}
                 </tbody>
@@ -74,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${network.subnet}</td>
                             <td>${network.gateway}</td>
                             <td>${network.purpose}</td>
-                            <td>${network.status}</td>
+                            <td>${createBadge(network.status)}</td>
                         </tr>
                     `).join("")}
                 </tbody>
@@ -108,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${backup.lastBackup}</td>
                             <td>${backup.frequency}</td>
                             <td>${backup.restoreTest}</td>
-                            <td>${backup.status}</td>
+                            <td>${createBadge(backup.status)}</td>
                         </tr>
                     `).join("")}
                 </tbody>
@@ -140,8 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${issue.id}</td>
                             <td>${issue.title}</td>
                             <td>${issue.category}</td>
-                            <td>${issue.priority}</td>
-                            <td>${issue.status}</td>
+                            <td>${createBadge(issue.priority)}</td>
+                            <td>${createBadge(issue.status)}</td>
                             <td>${issue.department}</td>
                         </tr>
                     `).join("")}
